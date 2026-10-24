@@ -22,6 +22,8 @@ import { Route as AuthenticatedAppRegistrationsRouteImport } from './routes/_aut
 import { Route as AuthenticatedAppReportsRouteImport } from './routes/_authenticated/app/reports'
 import { Route as AuthenticatedAppScoreboardRouteImport } from './routes/_authenticated/app/scoreboard'
 import { Route as AuthenticatedAppSportsRouteImport } from './routes/_authenticated/app/sports'
+import { Route as AuthenticatedAppTeamsIndexRouteImport } from './routes/_authenticated/app/teams.index'
+import { Route as AuthenticatedAppTeamsTeamIdRouteImport } from './routes/_authenticated/app/teams.$teamId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -89,6 +91,18 @@ const AuthenticatedAppSportsRoute = AuthenticatedAppSportsRouteImport.update({
   path: '/sports',
   getParentRoute: () => AuthenticatedAppRoute,
 } as any)
+const AuthenticatedAppTeamsIndexRoute =
+  AuthenticatedAppTeamsIndexRouteImport.update({
+    id: '/teams/',
+    path: '/teams/',
+    getParentRoute: () => AuthenticatedAppRoute,
+  } as any)
+const AuthenticatedAppTeamsTeamIdRoute =
+  AuthenticatedAppTeamsTeamIdRouteImport.update({
+    id: '/teams/$teamId',
+    path: '/teams/$teamId',
+    getParentRoute: () => AuthenticatedAppRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -103,6 +117,8 @@ export interface FileRoutesByFullPath {
   '/app/scoreboard': typeof AuthenticatedAppScoreboardRoute
   '/app/sports': typeof AuthenticatedAppSportsRoute
   '/app/': typeof AuthenticatedAppIndexRoute
+  '/app/teams/$teamId': typeof AuthenticatedAppTeamsTeamIdRoute
+  '/app/teams/': typeof AuthenticatedAppTeamsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -116,6 +132,8 @@ export interface FileRoutesByTo {
   '/app/scoreboard': typeof AuthenticatedAppScoreboardRoute
   '/app/sports': typeof AuthenticatedAppSportsRoute
   '/app': typeof AuthenticatedAppIndexRoute
+  '/app/teams/$teamId': typeof AuthenticatedAppTeamsTeamIdRoute
+  '/app/teams': typeof AuthenticatedAppTeamsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -132,6 +150,8 @@ export interface FileRoutesById {
   '/_authenticated/app/scoreboard': typeof AuthenticatedAppScoreboardRoute
   '/_authenticated/app/sports': typeof AuthenticatedAppSportsRoute
   '/_authenticated/app/': typeof AuthenticatedAppIndexRoute
+  '/_authenticated/app/teams/$teamId': typeof AuthenticatedAppTeamsTeamIdRoute
+  '/_authenticated/app/teams/': typeof AuthenticatedAppTeamsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -148,6 +168,8 @@ export interface FileRouteTypes {
     | '/app/scoreboard'
     | '/app/sports'
     | '/app/'
+    | '/app/teams/$teamId'
+    | '/app/teams/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -161,6 +183,8 @@ export interface FileRouteTypes {
     | '/app/scoreboard'
     | '/app/sports'
     | '/app'
+    | '/app/teams/$teamId'
+    | '/app/teams'
   id:
     | '__root__'
     | '/'
@@ -176,6 +200,8 @@ export interface FileRouteTypes {
     | '/_authenticated/app/scoreboard'
     | '/_authenticated/app/sports'
     | '/_authenticated/app/'
+    | '/_authenticated/app/teams/$teamId'
+    | '/_authenticated/app/teams/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -278,6 +304,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppSportsRouteImport
       parentRoute: typeof AuthenticatedAppRoute
     }
+    '/_authenticated/app/teams/': {
+      id: '/_authenticated/app/teams/'
+      path: '/teams'
+      fullPath: '/app/teams/'
+      preLoaderRoute: typeof AuthenticatedAppTeamsIndexRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
+    '/_authenticated/app/teams/$teamId': {
+      id: '/_authenticated/app/teams/$teamId'
+      path: '/teams/$teamId'
+      fullPath: '/app/teams/$teamId'
+      preLoaderRoute: typeof AuthenticatedAppTeamsTeamIdRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
   }
 }
 
@@ -290,6 +330,8 @@ interface AuthenticatedAppRouteChildren {
   AuthenticatedAppScoreboardRoute: typeof AuthenticatedAppScoreboardRoute
   AuthenticatedAppSportsRoute: typeof AuthenticatedAppSportsRoute
   AuthenticatedAppIndexRoute: typeof AuthenticatedAppIndexRoute
+  AuthenticatedAppTeamsTeamIdRoute: typeof AuthenticatedAppTeamsTeamIdRoute
+  AuthenticatedAppTeamsIndexRoute: typeof AuthenticatedAppTeamsIndexRoute
 }
 
 const AuthenticatedAppRouteChildren: AuthenticatedAppRouteChildren = {
@@ -301,6 +343,8 @@ const AuthenticatedAppRouteChildren: AuthenticatedAppRouteChildren = {
   AuthenticatedAppScoreboardRoute: AuthenticatedAppScoreboardRoute,
   AuthenticatedAppSportsRoute: AuthenticatedAppSportsRoute,
   AuthenticatedAppIndexRoute: AuthenticatedAppIndexRoute,
+  AuthenticatedAppTeamsTeamIdRoute: AuthenticatedAppTeamsTeamIdRoute,
+  AuthenticatedAppTeamsIndexRoute: AuthenticatedAppTeamsIndexRoute,
 }
 
 const AuthenticatedAppRouteWithChildren =

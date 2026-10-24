@@ -10,8 +10,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { supabase } from "@/integrations/supabase/client";
 import { useMe } from "@/lib/auth";
 import { matchesQuery, playersQuery, rosterQuery, teamQuery } from "@/lib/data";
-import { MatchList } from "./index";
-import { TeamDialog } from "./teams.index";
+import { MatchList } from "@/components/sporty/MatchList";
+import { TeamDialog } from "@/components/sporty/TeamDialog";
 
 export const Route = createFileRoute("/_authenticated/app/teams/$teamId")({
   head: () => ({ meta: [{ title: "Team — SPORTY" }, { name: "description", content: "Team roster and fixtures." }, { property: "og:title", content: "Team — SPORTY" }, { property: "og:description", content: "Team roster and fixtures." }] }),
