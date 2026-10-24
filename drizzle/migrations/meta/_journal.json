@@ -15,6 +15,13 @@
       "when": 1792856154525,
       "tag": "0001_noop",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1792856513682,
+      "tag": "0002_roles_roster_activity",
+      "breakpoints": true
     }
   ]
 }
