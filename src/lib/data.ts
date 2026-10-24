@@ -37,11 +37,11 @@ export const rosterQuery = (teamId: string) =>
 export const MATCH_SELECT =
   "*, sport:sports(id, name), home:teams!matches_home_team_id_fkey(id, name), away:teams!matches_away_team_id_fkey(id, name)";
 
-export const matchesQuery = queryOptions({
-  queryKey: ["matches"],
-  queryFn: async () => must(await supabase.from("matches").select(MATCH_SELECT).order("scheduled_at")),
-});
-export type MatchRow = Awaited<ReturnType<typeof matchesQuery.queryFn & {}>>[number];
+async function fetchMatches() {
+  return must(await supabase.from("matches").select(MATCH_SELECT).order("scheduled_at"));
+}
+export const matchesQuery = queryOptions({ queryKey: ["matches"], queryFn: fetchMatches });
+export type MatchRow = Awaited<ReturnType<typeof fetchMatches>>[number];
 
 export const registrationsQuery = queryOptions({
   queryKey: ["registrations"],
