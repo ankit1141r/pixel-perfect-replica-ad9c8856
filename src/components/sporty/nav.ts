@@ -11,7 +11,7 @@ export const navItems: NavItem[] = [
   { to: "/app/teams", label: "Teams", icon: Shield },
   { to: "/app/matches", label: "Fixtures", icon: CalendarDays },
   { to: "/app/scoreboard", label: "Scoreboard", icon: Gauge },
-  { to: "/app/players", label: "Players", icon: Users },
+  { to: "/app/players", label: "Players", icon: Users, admin: true },
   { to: "/app/registrations", label: "Registrations", icon: ClipboardCheck },
   { to: "/app/reports", label: "Reports", icon: BarChart3, admin: true },
   { to: "/app/profile", label: "Profile", icon: UserCog },

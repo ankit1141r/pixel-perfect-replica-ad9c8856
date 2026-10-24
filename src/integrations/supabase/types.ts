@@ -336,6 +336,22 @@ export type Database = {
         }
         Returns: boolean
       }
+      set_user_role: {
+        Args: {
+          _grant: boolean
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: undefined
+      }
+      team_roster: {
+        Args: { _team_id: string }
+        Returns: {
+          full_name: string
+          joined_at: string
+          player_id: string
+        }[]
+      }
     }
     Enums: {
       app_role: "admin" | "player"
