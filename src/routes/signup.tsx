@@ -43,7 +43,7 @@ function Signup() {
       options: { emailRedirectTo: `${window.location.origin}/app`, data: { full_name: parsed.data.fullName } },
     });
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     if (data.session) window.location.assign("/app");
     else setSentTo(parsed.data.email);
   }

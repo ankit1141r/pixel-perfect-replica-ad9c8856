@@ -47,7 +47,7 @@ function ProfileForm({ me }: { me: Me }) {
       onSubmit={(e) => {
         e.preventDefault();
         const p = profileSchema.safeParse({ fullName: name });
-        if (!p.success) return setErr(p.error.issues[0].message);
+        if (!p.success) { setErr(p.error.issues[0]?.message ?? "Invalid name"); return; }
         setErr(null);
         save.mutate(p.data.fullName);
       }}
